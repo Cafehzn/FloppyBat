@@ -2,15 +2,31 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public GameObject obstaclePrefab;//Obstacle to be spawned
+    public float spawnInterval = 2f;//Spawn interval
+    public Vector3 spawnPosition = new Vector3(14f, -2f, 0f);//Where the obstacle will spawn
+    private float timer;//Obstacle spawn timer
 
-    // Update is called once per frame
-    void Update()
+    //Game dificulty
+    [SerializeField]private float MinimumY;
+    [SerializeField]private float MaximumY;
+
+    private void Update()
     {
-        
+        if (PlayerController.instance.gameStarted)
+        {
+            timer -= Time.deltaTime;
+            if (timer < 0f)
+            {
+                SpawnObstacle();//Method bellow
+                timer = spawnInterval;//Reset count
+            }
+        }
+
+    }
+    void SpawnObstacle()
+    {
+        spawnPosition.y = Random.Range(MinimumY, MaximumY);//Randomize Y when spawn
+        Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity);//Obstacle instance
     }
 }

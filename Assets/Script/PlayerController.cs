@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool gameOver = false;
     [SerializeField] public TextMeshProUGUI endGameTxt;
 
+    [SerializeField] private AudioSource Music;
+    private AudioSource toUp;
+
 
     private void Awake()
     {
@@ -27,6 +30,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
+        toUp = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
 
         //Disable player gravity 'till start
@@ -49,6 +53,7 @@ public class PlayerController : MonoBehaviour
                 gameStarted = true;
                 rb.simulated = true; //Activate physics 
             }
+            toUp.PlayOneShot(toUp.clip, 1.0f);
             rb.linearVelocity = Vector2.up * jumpForce;
         }
     }
@@ -57,8 +62,12 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Barrier"))
         {
-            Debug.Log("Collison!");
+            //Debug.Log("Collison!");
             gameOver = true;
+            gameStarted = false;
+            rb.simulated = false;
+            Music.Stop();
+            endGameTxt.gameObject.SetActive(true);
         }
     }
 }

@@ -7,6 +7,7 @@ TagManager:
   - Barrier
   - Wall
   - Counter
+  - Obstacle
   layers:
   - Default
   - TransparentFX
