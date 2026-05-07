@@ -8,6 +8,8 @@ TagManager:
   - Wall
   - Counter
   - Obstacle
+  - Pontuation
+  - Text
   layers:
   - Default
   - TransparentFX

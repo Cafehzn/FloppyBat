@@ -8,8 +8,8 @@ public class SpawnManager : MonoBehaviour
     private float timer;//Obstacle spawn timer
 
     //Game dificulty
-    [SerializeField]private float MinimumY;
-    [SerializeField]private float MaximumY;
+    private float MinimumY = -1.6f;
+    private float MaximumY = 0.6f;
 
     private void Update()
     {

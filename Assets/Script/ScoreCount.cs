@@ -3,10 +3,9 @@ using UnityEngine;
 
 public class ScoreCount : MonoBehaviour
 {
-    [SerializeField] private AudioSource Point;
-    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] public AudioSource Point;
+    [SerializeField] public TextMeshProUGUI scoreText;
     private int score = 0;
-
     private void Start()
     {
         scoreText.text = $"Score: {score}";
@@ -14,11 +13,11 @@ public class ScoreCount : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Barrier"))
+        if (other.CompareTag("Counter"))
         {
             //Debug.Log("Point!");
             score++;
-            scoreText.text = $"Score: {score++}";
+            scoreText.text = $"Score: {score}";
             Point.Play();
         }
     }

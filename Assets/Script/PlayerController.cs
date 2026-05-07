@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float gravity = 10f;
 
-    [SerializeField] private bool gameOver = false;
+    [SerializeField] public bool gameOver = false;
     [SerializeField] public TextMeshProUGUI endGameTxt;
 
     [SerializeField] private AudioSource Music;
